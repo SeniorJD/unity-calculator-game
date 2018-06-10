@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 21a8d0f65e938c044965b0e47e23125f
+timeCreated: 1525120664
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Scientific Calculator LCD
+  fontNames:
+  - Scientific Calculator LCD
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
