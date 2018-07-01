@@ -7,7 +7,7 @@ PlayerSettings:
   productGUID: 723cf32ada83bbd4ba46e0a109e62b77
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
@@ -126,7 +126,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.3
+  bundleVersion: 0.4.2
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -260,7 +260,7 @@ PlayerSettings:
   - m_BuildTarget: 
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 8a1f06f28465d8c4dbbef205409fe9ea, type: 3}
+      m_Icon: {fileID: 2800000, guid: 08aaab5e94cd35a4b8d72a2f734c849f, type: 3}
       m_Width: 128
       m_Height: 128
       m_Kind: 0

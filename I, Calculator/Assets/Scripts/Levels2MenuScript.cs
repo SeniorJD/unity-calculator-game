@@ -11,14 +11,22 @@ public class Levels2MenuScript : MonoBehaviour {
         int[] progress = GameData.LoadStoryProgress(GameData.LevelType);
         string prefix = "Level_";
 
-        GameObject starPanel = Resources.Load<GameObject>("StarPanel");
+        Sprite gold = Resources.Load<Sprite>("Textures/v2/gold_0");
+        Sprite silver = Resources.Load<Sprite>("Textures/v2/silver_0");
+        Sprite bronze = Resources.Load<Sprite>("Textures/v2/bronze_0"); ;
+
+        //GameObject starPanel = Resources.Load<GameObject>("StarPanel");
         Debug.Log("Levels2MenuScript gt:" + GameData.LevelType + "; LN:" + GameData.LevelNumber);
+
+        int prevStarsCount = 1;
 
         for (int i = 0; i < progress.Length; i++)
         {
             int starsCount = GameData.GetStarsCount(GameData.LevelType, i, progress[i]);
             Debug.Log("level: " + i + "; starts: " + starsCount + "; progress: " + progress[i]);
-            bool active = starsCount > -1;
+            bool active = prevStarsCount > 0;
+
+            prevStarsCount = starsCount;
 
             Button button = GameObject.Find(prefix + (i + 1)).GetComponent<Button>();
             button.interactable = active;
@@ -28,13 +36,15 @@ public class Levels2MenuScript : MonoBehaviour {
                 continue;
             }
 
-            GameObject starsPanel = button.transform.Find("StarsPanel").gameObject;
-
-            for (int j = 0; j < starsCount; j++)
+            if (starsCount == 1)
             {
-                GameObject starPanelInstance = Instantiate(starPanel);
-                starPanelInstance.transform.SetParent(starsPanel.transform);
-                starPanelInstance.GetComponent<RectTransform>().localScale = new Vector3(1, 1, 1);
+                button.image.sprite = bronze;
+            } else if (starsCount == 2)
+            {
+                button.image.sprite = silver;
+            } else if (starsCount == 3)
+            {
+                button.image.sprite = gold;
             }
         }
 
@@ -44,13 +54,13 @@ public class Levels2MenuScript : MonoBehaviour {
         switch(GameData.LevelType)
         {
             case GameData.PLUS_LEVEL_TYPE:
-                s = "Plus Levels";
+                s = "Plus";
                 break;
             case GameData.MINUS_LEVEL_TYPE:
-                s = "Minus Levels";
+                s = "Minus";
                 break;
             case GameData.MULTIPLY_LEVEL_TYPE:
-                s = "Multiply Levels";
+                s = "Multiply";
                 break;
             default:
                 s = "ERROR";
@@ -62,11 +72,19 @@ public class Levels2MenuScript : MonoBehaviour {
     public void OnLevelButtonPressed(int code)
     {
         GameData.LevelNumber = code;
-        SceneManager.LoadScene("PlayScene");
+        SceneManager.LoadScene("PlayScene_v2");
     }
 
     public void OnBackPressed()
     {
-        SceneManager.LoadScene("LevelsMenuScene");
+        SceneManager.LoadScene("LevelsMenuScene_v2");
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            OnBackPressed();
+        }
     }
 }

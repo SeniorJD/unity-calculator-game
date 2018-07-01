@@ -20,6 +20,8 @@ public static class GameData {
 
     private static int lastScore;
 
+    private static bool isNewBest = false;
+
     public static int GameType {
         get { return gameType; }
         set { gameType = value; }
@@ -62,21 +64,21 @@ public static class GameData {
         //}
 
         int[] result = new int[15];
-        int prevResult = 0;
+        //int prevResult = 0;
         for (int i = 0; i < result.Length; i++)
         {
             string key = STORY_PROGRESS_KEY + DELIMITER + levelType + DELIMITER + i;
             int progress = PlayerPrefs.GetInt(key, -1);
 
-            if (progress == -1 && prevResult > -1)
-            {
-                result[i] = 0;
-            } else
-            {
+            //if (progress == -1 && (prevResult > 0 || i == 1)) // prevResult > -1
+            //{
+                //result[i] = 0;
+            //} else
+            //{
                 result[i] = progress;
-            }
+            //}
 
-            prevResult = progress;
+            //prevResult = progress;
         }
 
         if (result[0] == -1)
@@ -147,8 +149,12 @@ public static class GameData {
 
             if (oldScore == -1 || score < oldScore)
             {
+                isNewBest = true;
                 PlayerPrefs.SetInt(key, score);
                 Debug.Log("A " + PlayerPrefs.GetInt(key, -1));
+            } else
+            {
+                isNewBest = false;
             }
         } else
         {
@@ -160,8 +166,12 @@ public static class GameData {
 
             if (oldScore == -1 || score > oldScore)
             {
+                isNewBest = true;
                 PlayerPrefs.SetInt(key, score);
                 Debug.Log("B " + PlayerPrefs.GetInt(key, -1));
+            } else
+            {
+                isNewBest = false;
             }
         }
     }
@@ -180,6 +190,11 @@ public static class GameData {
 
             return PlayerPrefs.GetInt(key, -1);
         }
+    }
+
+    public static bool IsNewBest()
+    {
+        return isNewBest;
     }
 
     public static void ClearTempData()

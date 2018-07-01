@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MouseClickListener : MonoBehaviour {
 
-    private PlaySceneScript playScript;
+    private PlaySceneScript_v2 playScript;
 
     private void Start()
     {
-        playScript = FindObjectOfType<Canvas>().GetComponent<PlaySceneScript>();
+        playScript = FindObjectOfType<Canvas>().GetComponent<PlaySceneScript_v2>();
     }
     void Update () {
 		if (Input.GetMouseButtonUp(0))

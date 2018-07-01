@@ -9,27 +9,27 @@ public class LevelsMenuScript : MonoBehaviour {
     {
         GameData.GameType = GameData.STORY_GAME_TYPE;
         GameData.LevelType = GameData.PLUS_LEVEL_TYPE;
-        SceneManager.LoadScene("Levels2MenuScene");
+        SceneManager.LoadScene("Levels2MenuScene_v2");
     }
 
     public void OnMinusLevelsPressed()
     {
         GameData.GameType = GameData.STORY_GAME_TYPE;
         GameData.LevelType = GameData.MINUS_LEVEL_TYPE;
-        SceneManager.LoadScene("Levels2MenuScene");
+        SceneManager.LoadScene("Levels2MenuScene_v2");
     }
 
     public void OnMultiplyLevelsPressed()
     {
         GameData.GameType = GameData.STORY_GAME_TYPE;
         GameData.LevelType = GameData.MULTIPLY_LEVEL_TYPE;
-        SceneManager.LoadScene("Levels2MenuScene");
+        SceneManager.LoadScene("Levels2MenuScene_v2");
     }
 
 
     public void OnBackPressed()
     {
-        SceneManager.LoadScene("MainMenuScene");
+        SceneManager.LoadScene("MainMenuScene_v2");
     }
 
     private void Update()
@@ -54,6 +54,14 @@ public class LevelsMenuScript : MonoBehaviour {
 
                 PlayerPrefs.SetInt(key, value);
             }
+        }
+    }
+
+    private void OnApplicationPause(bool pause)
+    {
+        if (pause)
+        {
+            OnBackPressed();
         }
     }
 }
